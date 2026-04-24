@@ -120,11 +120,9 @@ With more epochs or a tuned lambda schedule, the expected trend is:
 
 ## Gate Value Distribution
 
-The gate distribution plot (`gate_distribution_lambda_0.001.png`) was generated
-after training. A successful pruning run produces a bimodal distribution:
-a large spike near 0 (pruned weights) and a cluster near 1 (active weights).
+The distribution of gate values after training shows that most gates are reduced from their initial values but remain above the strict pruning threshold (1e-2). This explains why the measured sparsity is 0.00%, even though the sparsity regularization is actively influencing the network.
 
-*(See gate_distribution_lambda_0.001.png in the repository)*
+A longer training duration or adjusted hyperparameters would further push gate values closer to zero, resulting in observable pruning.
 
 ---
 
