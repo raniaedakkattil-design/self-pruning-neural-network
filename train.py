@@ -6,13 +6,11 @@ from model import SimpleNet, PrunableLinear, get_sparsity
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-# Load SMALL subset (FAST)
 transform = transforms.ToTensor()
 
 train_data = datasets.CIFAR10(root="./data", train=True, download=True, transform=transform)
 test_data = datasets.CIFAR10(root="./data", train=False, download=True, transform=transform)
 
-# Subset (VERY IMPORTANT)
 train_subset = torch.utils.data.Subset(train_data, range(5000))
 test_subset = torch.utils.data.Subset(test_data, range(1000))
 
@@ -33,7 +31,7 @@ def train_model(lambda_val):
     optimizer = optim.Adam(model.parameters(), lr=1e-3)
     criterion = nn.CrossEntropyLoss()
 
-    for epoch in range(2):  # FAST
+    for epoch in range(2):  
         model.train()
         for x, y in train_loader:
             x, y = x.to(device), y.to(device)
